@@ -2,10 +2,21 @@
 #include<iostream>
 #include <cassert>
 #include <sstream>
+void check1(){
+    stringstream colour ("black");
+    string col=fillcolor(colour);
+    assert(col=="black");
+
+
+}
+void check2(){
+stringstream colour("#ffeeee");
+string col=fillcolor(colour);
+assert(col=="#ffeeee");
+}
+
 int
 main() {
-
-    stringstream colour("black");
-    fillcolor(colour);
-
+    check1();
+    check2();
 }

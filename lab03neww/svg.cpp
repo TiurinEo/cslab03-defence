@@ -72,10 +72,9 @@ const auto IMAGE_WIDTH = 400;
 }
 string fillcolor(istream& in){
     string fill;
-    cin.ignore();
+    //cin.ignore();
     do{
     cerr<<"Enter color:";
-    //cin.ignore();
     getline(in,fill);
      } while((!(fill.find(' ')==std::string::npos)||(fill[0]=='#'))&&!(fill[0]=='#'));
     return fill;
