@@ -26,9 +26,20 @@ void svg_rect(double x, double y, double width, double height,string fill,string
     cout << "<rect x='" << x << "' y='" <<y<< "' width='"<<width<<"' height='"<<height<<"' stroke='"<<stroke<<"' fill='"<<fill<<"'></rect>";
 }
 
+string fillcolor(istream& in){
+    string filler;
+
+    do{
+           // in.ignore();
+    cerr<<"Enter color:";
+    getline(in,filler, ';');
+     } while((!(filler.find(' ')==std::string::npos)||(filler[0]=='#'))&&!(filler[0]=='#'));
+    return filler;
+}
 
 void
-show_histogram_svg(const vector<size_t>& bins,string fill){
+show_histogram_svg(const vector<size_t>& bins){
+
 const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
@@ -51,8 +62,12 @@ const auto IMAGE_WIDTH = 400;
     }
 
     top=0;
+    cin.ignore();
     if (max_count > MAX_ASTERISK ){
+
         for(size_t bin : bins){
+
+                string fill=fillcolor(cin);
             const double bin_width = static_cast <double> (IMAGE_WIDTH - TEXT_LEFT)/max_count * bin;
             svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,fill);
             top+=BIN_HEIGHT;
@@ -60,6 +75,7 @@ const auto IMAGE_WIDTH = 400;
     }
     else{
         for(size_t bin : bins){
+                string fill=fillcolor(cin);
             const double bin_width = BLOCK_WIDTH * bin;
             svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,fill);
             top+=BIN_HEIGHT;
@@ -69,13 +85,4 @@ const auto IMAGE_WIDTH = 400;
 
 
     svg_end();
-}
-string fillcolor(istream& in){
-    string fill;
-    //cin.ignore();
-    do{
-    cerr<<"Enter color:";
-    getline(in,fill);
-     } while((!(fill.find(' ')==std::string::npos)||(fill[0]=='#'))&&!(fill[0]=='#'));
-    return fill;
 }

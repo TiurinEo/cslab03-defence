@@ -3,7 +3,7 @@
 #include <cassert>
 #include <sstream>
 void check1(){
-    stringstream colour ("black");
+    stringstream colour (" gfg; black;black");
     string col=fillcolor(colour);
     assert(col=="black");
 
@@ -17,6 +17,7 @@ assert(col=="#ffeeee");
 
 int
 main() {
+
     check1();
     check2();
 }
